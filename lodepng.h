@@ -1022,6 +1022,10 @@ unsigned compress(std::vector<unsigned char>& out, const std::vector<unsigned ch
 } /* namespace lodepng */
 #endif /*LODEPNG_COMPILE_CPP*/
 
+/* Export these functions for vips */
+int lodepng_color_model_equal(const LodePNGColorMode* a, const LodePNGColorMode* b);
+void lodepng_add_padding_bits(unsigned char* out, const unsigned char* in,
+                            size_t olinebits, size_t ilinebits, unsigned h);
 /*
 TODO:
 [.] test if there are no memory leaks or security exploits - done a lot but needs to be checked often

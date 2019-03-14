@@ -2390,6 +2390,11 @@ static int lodepng_color_mode_equal(const LodePNGColorMode* a, const LodePNGColo
   return 1;
 }
 
+int lodepng_color_model_equal(const LodePNGColorMode* a, const LodePNGColorMode* b)
+{
+  return lodepng_color_mode_equal(a, b);
+}
+
 void lodepng_palette_clear(LodePNGColorMode* info) {
   if(info->palette) lodepng_free(info->palette);
   info->palette = 0;
@@ -5200,6 +5205,12 @@ static void addPaddingBits(unsigned char* out, const unsigned char* in,
     "Use of uninitialised value of size ###" warning from valgrind*/
     for(x = 0; x != diff; ++x) setBitOfReversedStream(&obp, out, 0);
   }
+}
+
+void lodepng_add_padding_bits(unsigned char* out, const unsigned char* in,
+                           size_t olinebits, size_t ilinebits, unsigned h)
+{
+  addPaddingBits(out, in, olinebits, ilinebits, h);
 }
 
 /*
